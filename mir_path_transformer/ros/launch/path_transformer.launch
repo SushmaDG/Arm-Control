@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<launch>
+    <node pkg="mir_path_transformer" type="path_transformer_with_sampler_node"
+          name="path_transformer" output="screen">
+
+        <!-- the cycle rate of the node (in Hz) -->
+        <param name="loop_rate" type="double" value="10"/>
+
+        <param name="wait_for_transform" type="double" value="0.1"/>
+
+        <param name="target_frame" type="str" value="base_link"/>
+
+        <param name="reference_frame" type="str" value="arm_link_5"/>
+
+        <param name="tool_tip_frame" type="str" value="arm_link_5"/>
+        <!--param name="tool_tip_frame" type="str" value="gripper_tip_link"/-->
+
+        <param name="wrist_frame" type="str" value="arm_link_5"/>
+
+        <remap from="~transformed_pose" to="/mir_states/object_selector/object_pose" />
+
+        <!-- <remap from="~transformed_path" to="/mcr_perception/line_contour_detector/output/trajectory/original" /> -->
+    </node>
+</launch>

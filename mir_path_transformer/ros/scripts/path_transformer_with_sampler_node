@@ -1,0 +1,6 @@
+#!/usr/bin/env python
+
+import mir_path_transformer_ros.path_transformer_with_sampler
+
+if __name__ == '__main__':
+    mir_path_transformer_ros.path_transformer_with_sampler.main()

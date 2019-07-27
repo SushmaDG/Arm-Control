@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<package>
+  <name>mir_compute_transform</name>
+  <version>0.1.0</version>
+  <description>
+    This component provides functionality to compute transform between the 
+    target frame and task frame.
+  </description>
+  <license>GPLv3</license>
+
+  <maintainer email="shehzad.ahmed@smail.inf.h-brs.de">Shehzad Ahmed</maintainer>
+  <author email="shehzad.ahmed@smail.inf.h-brs.de">Shehzad Ahmed</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <build_depend>rospy</build_depend>
+  
+  <run_depend>rospy</run_depend>
+  <run_depend>std_msgs</run_depend>
+  <run_depend>sensor_msgs</run_depend>
+  <run_depend>sensor_msgs</run_depend>
+  <run_depend>geometry_msgs</run_depend>
+  <run_depend>tf</run_depend>
+</package>

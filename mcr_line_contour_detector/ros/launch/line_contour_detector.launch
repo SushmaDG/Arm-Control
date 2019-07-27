@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<launch>
+    <group ns="mcr_perception">
+        <node pkg="mcr_line_contour_detector" type="line_contour_finder_node" name="line_contour_detector" output="screen" respawn="false">
+            <remap from="~input/pointcloud" to="/arm_cam3d/depth_registered/points" />
+            <param name="desired_frame" type="string" value="base_link"/>
+            <param name="filter_contour" value="true"/>
+            <!-- 250, 500, 200, 380-->
+            <param name="min_x" value="250"/> <!--from left to right on 2d-->
+            <param name="max_x" value="490"/> 
+            <param name="min_y" value="200"/> <!--from top to bottom on 2d-->
+            <param name="max_y" value="380"/>
+            <param name="pcl_leaf_size" value="0.009"/>
+            <param name="new_th" value="true"/>
+
+        </node>
+    </group>
+</launch>

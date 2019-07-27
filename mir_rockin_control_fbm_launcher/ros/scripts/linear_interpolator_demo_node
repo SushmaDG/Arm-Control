@@ -1,0 +1,6 @@
+#!/usr/bin/env python
+
+import mir_rockin_control_fbm_launcher_ros.linear_interpolator_demo
+
+if __name__ == '__main__':
+    mir_rockin_control_fbm_launcher_ros.linear_interpolator_demo.main()

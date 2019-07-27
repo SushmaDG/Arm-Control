@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<launch>
+    <node pkg="mir_path_generator" type="path_generator_node"
+          name="path_generator" output="screen">
+
+        <!-- the cycle rate of the node (in Hz) -->
+        <param name="loop_rate" type="double" value="10"/>
+
+        <!-- parameter to select specify desired path(line or sine) -->
+        <param name="path_selector" type="str" value="sine"/>
+
+        <!-- step size(in meters) to interpolate x-coordinate of the point-->
+        <param name="step_size" type="double" value="0.001"/>
+
+        <!-- slope to be considered if line is selected as path-->
+        <param name="line_slope" type="double" value="0.5"/>
+
+        <!-- amplitude(in meters) of the sine path -->
+        <param name="sine_amplitude" type="double" value="0.075"/>
+
+        <!-- distance to angle conversion factor(in rad/meters) for the sine path -->
+        <param name="sine_angle_conversion_factor" type="double" value="39.26990"/>
+
+        <!-- remap generated path to the path transformer -->
+        <remap from="~path" to="/path_transformer/path" />
+
+        <!-- path to the csv file -->
+        <!-- <remap from="~pattern_selector" to="/mir_path_generator/csv/pattern_line" /> -->
+    </node>
+</launch>

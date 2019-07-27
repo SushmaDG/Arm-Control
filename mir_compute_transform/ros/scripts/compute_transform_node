@@ -1,0 +1,6 @@
+#!/usr/bin/env python
+
+import mir_compute_transform_ros.compute_transform
+
+if __name__ == '__main__':
+    mir_compute_transform_ros.compute_transform.main()

@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<launch>
+
+  <include file="$(find mir_compute_transform)/ros/launch/compute_transform.launch"/>
+
+  <include file="$(find mir_path_generator)/ros/launch/path_generator.launch"/>
+
+  <include file="$(find mir_path_transformer)/ros/launch/path_transformer.launch"/>
+
+  <include file="$(find mir_trajectory_time_parameterizer)/ros/launch/trajectory_time_parameterizer.launch"/>
+
+  <node pkg="mcr_trajectory_generation" type="ik_trajectory_solver_node"
+        name="linear_interpolator_demo_ik_trajectory_solver" output="screen">
+    <!-- Move group for MoveIt! -->
+    <param name="move_group" type="str" value="move_group"/>
+
+    <!-- Name of the group to compute the inverse kinematics -->
+    <param name="arm" type="str" value="arm_1"/>
+
+    <!-- The reference frame for the trajectory -->
+    <param name="reference_frame" type="str" value="base_link"/>
+
+    <param name="max_poses" type="int" value="50"/>
+
+    <!-- Joint names of the arm -->
+    <rosparam param="joint_names">
+      - 'arm_joint_1'
+      - 'arm_joint_2'
+      - 'arm_joint_3'
+      - 'arm_joint_4'
+      - 'arm_joint_5'
+    </rosparam>
+
+    <remap from="~poses" to="/path_transformer/transformed_path"/>
+  </node>
+
+  <node pkg="mcr_trajectory_generation" type="trajectory_executor_node"
+        name="linear_interpolator_demo_trajectory_executor" output="screen">
+    <!-- Trajectory controller to be used to execute the trajectory. -->
+    <param name="trajectory_controller" type="str"
+           value="/arm_1/arm_controller/follow_joint_trajectory"/>
+
+    <remap from="~trajectory_in"
+           to="/mcr_manipulation/trajectory_time_parameterizer/trajectory_out"/>
+    <remap from="~trajectory_out"
+         to="/arm_1/arm_controller/follow_joint_trajectory/goal"/>
+  </node>
+
+  <group ns="linear_interpolator_demo">
+    <node pkg="mir_rockin_control_fbm_launcher" type="linear_interpolator_demo_node"
+          name="coordinator" output="screen">
+      <!-- Node cycle rate (in hz) -->
+      <param name="loop_rate" type="double" value="30"/>
+
+      <remap from="~event_in" to="/linear_interpolator_demo/event_in"/>
+      <remap from="~event_out" to="/linear_interpolator_demo/event_out"/>
+
+      <!-- To trigger components -->
+      <remap from="~start_linear_interpolator"
+             to="/path_generator/event_in"/>
+      <remap from="~start_linear_transformer"
+             to="/path_transformer/event_in"/>
+      <remap from="~start_ik_solver"
+             to="/linear_interpolator_demo_ik_trajectory_solver/event_in"/>
+      <remap from="~start_trajectory_generator"
+             to="/mcr_manipulation/trajectory_time_parameterizer/event_in"/>
+
+      <!-- To obtain feedback from components -->
+      <remap from="~linear_interpolator_status"
+             to="/path_generator/event_out"/>
+      <remap from="~linear_transformer_status"
+             to="/path_transformer/event_out"/>
+      <remap from="~ik_solver_status"
+             to="/linear_interpolator_demo_ik_trajectory_solver/event_out"/>
+      <remap from="~trajectory_generator_status"
+             to="/mcr_manipulation/trajectory_time_parameterizer/event_out"/>
+    </node>
+  </group>
+</launch>

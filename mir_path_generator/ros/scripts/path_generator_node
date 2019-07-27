@@ -1,0 +1,6 @@
+#!/usr/bin/env python
+
+import mir_path_generator_ros.new_path_generator
+
+if __name__ == '__main__':
+    mir_path_generator_ros.new_path_generator.main()
