@@ -60,7 +60,7 @@ This arm configuration can be saved in mir moveit youbot brsu 1/config/youbot.sr
 
 `y : 0.0`
 
-`z : 0.0” ``
+`z : 0.0” `
 
 `rostopic pub /compute_transform/event_in std_msgs/String "data: 'e_start' "`
 
@@ -82,7 +82,7 @@ This arm configuration can be saved in mir moveit youbot brsu 1/config/youbot.sr
 
 `y : 0.0`
 
-`z : 0.0” ``
+`z : 0.0” `
 
 
 `rostopic pub/path_generator/end_point geometry_msgs/PoseStamped "header: `
@@ -103,7 +103,7 @@ This arm configuration can be saved in mir moveit youbot brsu 1/config/youbot.sr
 
 `y : 0.1`
 
-`z : 0.0” ``
+`z : 0.0” `
 
 
 `rostopic linear_interpolator_demo/event_in std_msgs/String "data: 'e_start' " `
