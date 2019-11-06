@@ -11,7 +11,7 @@ The code does not work (at least in simulation). It is also not easily transfera
 * Refactor the code such that arm trajectories can be generated and executed as new information (about the path) is available.
 
 ### Setup
-  git clone https://github.com/b-it-bots/mas_industrial_robotics.git
+`git clone https://github.com/b-it-bots/mas_industrial_robotics.git`
   
 ### Launch 
 
@@ -31,7 +31,8 @@ Add other topics as necessary.
 ### Run
 
 Send the arm to a preconfigured pose:
-rosrun moveit_commander moveit_commander_cmdline.py
-use arm_1
-c=[1.0 1.78146637708 -1.68232357583 3.40582651518 1.57]
-go c
+
+`rosrun moveit_commander moveit_commander_cmdline.py`
+`use arm_1`
+`c=[1.0 1.78146637708 -1.68232357583 3.40582651518 1.57]`
+`go c`
