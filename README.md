@@ -43,39 +43,68 @@ Send the arm to a preconfigured pose:
 This arm configuration can be saved in mir moveit youbot brsu 1/config/youbot.srdf, so you don’t have to type it in every time. The following commands are also in the README.md of the package mir rockin control fbm launcher.
 
 `rostopic pub /compute_transform/reference_point geometry_msgs/PointStamped "header:
+
 seq : 0
+
 stamp :
+
 secs : 0
+
 nsecs : 0
+
 frame id : ’ task link ’
+
 point :
+
 x : 0.0
+
 y : 0.0
+
 z : 0.0” `
 
 `rostopic pub /compute_transform/event_in std_msgs/String "data: 'e_start' " `
 
 `rostopic pub /path_generator/start_point geometry_msgs/PontStamped "header: 
+
 seq : 0
+
 stamp :
+
 secs : 0
+
 nsecs : 0
+
 frame id : ’ task link ’
+
 point :
+
 x : 0.0
+
 y : 0.0
+
 z : 0.0” `
 
+
 `rostopic pub/path_generator/end_point geometry_msgs/PoseStamped "header: 
+
 seq : 0
+
 stamp :
+
 secs : 0
+
 nsecs : 0
+
 frame id : ’ task link ’
+
 point :
+
 x : 0.1
+
 y : 0.1
+
 z : 0.0” `
+
 
 `rostopic linear_interpolator_demo/event_in std_msgs/String "data: 'e_start' " `
 
